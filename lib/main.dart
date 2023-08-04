@@ -14,37 +14,29 @@ import 'notifiers/property_owner/category.dart';
 import 'notifiers/user_notifier.dart';
 import 'package:findhouse/notifiers/app.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider.value(value: AppNotifier()),
-      ChangeNotifierProvider.value(value: UserNotifier.initialize()),
-      ChangeNotifierProvider.value(value: CategoryProvider.initialize()),
-      ChangeNotifierProvider.value(value: PropertiesProvider.initialize()),
-
-      ChangeNotifierProvider(
-        create: (context) => PropertyNotifier(),
-      ),
-
-    ],
-    child: ThemeBuilder(
-  defaultBrightness: Brightness.light,
-  builder: (context, _brightness) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Find House',
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            brightness: _brightness
+      providers: [
+        ChangeNotifierProvider.value(value: AppNotifier()),
+        ChangeNotifierProvider.value(value: UserNotifier.initialize()),
+        ChangeNotifierProvider.value(value: CategoryProvider.initialize()),
+        ChangeNotifierProvider.value(value: PropertiesProvider.initialize()),
+        ChangeNotifierProvider(
+          create: (context) => PropertyNotifier(),
         ),
-        home: ScreensController()
-    );
-  }
-  )));
-
+      ],
+      child: ThemeBuilder(
+          defaultBrightness: Brightness.light,
+          builder: (context, _brightness) {
+            return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Find House',
+                theme: ThemeData(
+                    primarySwatch: Colors.blue, brightness: _brightness),
+                home: ScreensController());
+          })));
 }
-
 
 class ScreensController extends StatelessWidget {
   @override
@@ -63,4 +55,4 @@ class ScreensController extends StatelessWidget {
         return SplashHome();
     }
   }
-  }
+}
